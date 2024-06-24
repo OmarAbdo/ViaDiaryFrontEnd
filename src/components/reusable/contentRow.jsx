@@ -4,7 +4,9 @@ export default function ContentRow({ headerValue }) {
     return (
       <div>
         <p>Discover new</p>
-        <h1> {headerValue}</h1>
+        <h1 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          {headerValue}
+        </h1>
         <TrackList />
       </div>
     );

@@ -1,5 +1,7 @@
 export default function Footer () {
   return (
-    <div>ViaDiaries © 2024</div>
+    <div style={{ padding: "2%" }}>
+      <p style={{ textAlign: "center" }}>ViaDiaries © 2024</p>
+    </div>
   );
 }
