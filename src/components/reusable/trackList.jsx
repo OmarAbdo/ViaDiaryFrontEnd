@@ -19,11 +19,6 @@ const files = [
     source:
       "https://images.immediate.co.uk/production/volatile/sites/3/2022/10/man-listening-to-audiobook-on-the-bus-how-does-audible-work-b57b949.png",
   },
-  {
-    title: "My Diary in Poland",
-    source:
-      "https://images.ctfassets.net/3sa0209epr53/1QgYM3yAewGmKw6GWEskC4/c86d28eac79e8b143cfb6c329ca19733/audible-hero-listener_tan_coat_in_newark.jpg?fm=jpg&fl=progressive&fit=fill&q=85&w=1120&h=800",
-  },
 ];
 
 export default function TrackList() {
