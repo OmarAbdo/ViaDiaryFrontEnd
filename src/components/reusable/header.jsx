@@ -3,13 +3,22 @@ import { Menu, Popover, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../../context/authentication";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Header() {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      logout();
+      navigate("/login");
+  };
+  
   return (
     <>
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -18,7 +27,7 @@ export default function Header() {
         className={({ open }) =>
           classNames(
             open ? "fixed inset-0 z-40 overflow-y-auto" : "",
-            "bg-white shadow-sm lg:static lg:overflow-y-visible"
+            "shadow-sm lg:static lg:overflow-y-visible"
           )
         }
       >
@@ -31,7 +40,7 @@ export default function Header() {
                     <Link to="/">
                       <img
                         className="block h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="./logo.png"
                         alt="Your Company"
                       />
                     </Link>
@@ -53,7 +62,7 @@ export default function Header() {
                         <input
                           id="search"
                           name="search"
-                          className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0  py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                           placeholder="Search"
                           type="search"
                         />
@@ -73,18 +82,12 @@ export default function Header() {
                   </Popover.Button>
                 </div>
                 <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-                  <Link
-                    to="/signup"
+                  <button
+                    onClick={handleLogout}
                     className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    Sign up
-                  </Link>
-                  <Link
-                    to="/login"
-                    className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Sign in
-                  </Link>
+                    Logout
+                  </button>
                 </div>
               </div>
             </div>
@@ -93,18 +96,12 @@ export default function Header() {
               <div className="border-t border-gray-200 pb-3 pt-4">
                 <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
                   <div className=" lg:flex lg:items-center lg:justify-end xl:col-span-4">
-                    <Link
-                      to="/signup"
+                    <button
+                      onClick={handleLogout}
                       className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                      Sign up
-                    </Link>
-                    <Link
-                      to="/login"
-                      className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Sign in
-                    </Link>
+                      Logout
+                    </button>
                   </div>
                 </div>
               </div>
