@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
+import GuestLayout from "./components/guestLayout"; "./components/guestLayout";
 import Main from './pages/main/index';
 import Login from './pages/login/index';
 import Registration from './pages/registration/index';
@@ -9,9 +10,38 @@ const App = () => {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Layout><Main /></Layout>} />
-          <Route path="/login" element={<Layout><Login /></Layout>} />
-          <Route path="/signup" element={<Layout><Registration /></Layout>} />
+          <Route
+            path="/home"
+            element={
+              <Layout>
+                <Main />
+              </Layout>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <GuestLayout>
+                <Login />
+              </GuestLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <GuestLayout>
+                <Login />
+              </GuestLayout>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <GuestLayout>
+                <Registration />
+              </GuestLayout>
+            }
+          />
         </Routes>
       </div>
     </Router>

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    color: white!important;
+}
+
+button {
+    background-color: #57f892 !important;
+}
+
+a {
+    color: #57f892 !important;
+}
