@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import GuestLayout from "./components/guestLayout";
-import Main from "./pages/main/index";
+import Home from "./pages/home/index";
+import User from "./pages/user/index";
 import Login from "./pages/login/index";
 import Registration from "./pages/registration/index";
 import PrivateRoute from "./components/privateRoute";
@@ -21,7 +22,20 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 element={
                   <Layout>
-                    <Main />
+                    <Home />
+                  </Layout>
+                }
+              />
+            }
+          />
+          <Route
+            path="/user/:id"
+            element={
+              <PrivateRoute
+                isAuthenticated={isAuthenticated}
+                element={
+                  <Layout>
+                    <User />
                   </Layout>
                 }
               />

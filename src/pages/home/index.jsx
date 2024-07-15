@@ -1,6 +1,6 @@
 import ContentRow from "../../components/reusable/contentRow";
 
-export default function Main() {
+export default function Home() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <ContentRow headerValue="Tracks" />
