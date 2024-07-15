@@ -1,11 +1,15 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
-import GuestLayout from "./components/guestLayout"; "./components/guestLayout";
-import Main from './pages/main/index';
-import Login from './pages/login/index';
-import Registration from './pages/registration/index';
+import GuestLayout from "./components/guestLayout";
+import Main from "./pages/main/index";
+import Login from "./pages/login/index";
+import Registration from "./pages/registration/index";
+import PrivateRoute from "./components/privateRoute";
+import { useAuth } from "./context/authentication";
 
 const App = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Router>
       <div className="App">
@@ -13,9 +17,14 @@ const App = () => {
           <Route
             path="/home"
             element={
-              <Layout>
-                <Main />
-              </Layout>
+              <PrivateRoute
+                isAuthenticated={isAuthenticated}
+                element={
+                  <Layout>
+                    <Main />
+                  </Layout>
+                }
+              />
             }
           />
           <Route
