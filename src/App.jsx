@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import GuestLayout from "./components/guestLayout";
+import Landing from "./pages/landing/index";
 import Home from "./pages/home/index";
 import User from "./pages/user/index";
 import Login from "./pages/login/index";
@@ -41,14 +42,7 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="/"
-            element={
-              <GuestLayout>
-                <Login />
-              </GuestLayout>
-            }
-          />
+          <Route path="/" element={<Landing />} />
           <Route
             path="/login"
             element={

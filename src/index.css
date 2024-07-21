@@ -13,3 +13,8 @@ button {
 a {
     color: #57f892 !important;
 }
+
+.my-green-bg {
+    background-color: #57f892 !important;
+    color: white !important;
+}
