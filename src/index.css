@@ -18,3 +18,8 @@ a {
     background-color: #57f892 !important;
     color: white !important;
 }
+
+.my-form input {
+    color: #083619 !important;  
+    padding: 6px;
+}

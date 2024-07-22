@@ -1,6 +1,61 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 export default function Registration() {
+  const [formData, setFormData] = useState({
+      username: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+    });
+
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      if (formData.password !== formData.passwordConfirmation) {
+        alert("Passwords don't match.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:3000/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Signup failed");
+        }
+
+        const data = await response.json();
+        console.log("Signup successful", data);
+        // Store token and user ID in local storage
+        localStorage.setItem("authToken", data.access_token);
+        localStorage.setItem("userId", data.id);
+        localStorage.setItem("isAuthenticated", "true");
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 1000);
+        
+
+      } catch (error) {
+        // Handle error (e.g., show error message)
+        console.error("Signup error", error);
+      }
+  };
+  
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,7 +71,7 @@ export default function Registration() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6 my-form" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -30,6 +85,8 @@ export default function Registration() {
                   name="username"
                   type="username"
                   required
+                  value={formData.username}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -48,6 +105,8 @@ export default function Registration() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -68,6 +127,8 @@ export default function Registration() {
                   id="password"
                   name="password"
                   type="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -86,9 +147,11 @@ export default function Registration() {
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
+                  name="passwordConfirmation"
                   type="password"
                   autoComplete="current-password"
+                  value={formData.passwordConfirmation}
+                  onChange={handleChange}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

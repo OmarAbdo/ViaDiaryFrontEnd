@@ -81,9 +81,15 @@ export default function Header() {
                   </Popover.Button>
                 </div>
                 <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+                  <Link
+                    to="/user/:id"
+                    className="ml-6 inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                  >
+                    My Profile
+                  </Link>
                   <button
                     onClick={handleLogout}
-                    className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                   >
                     Logout
                   </button>
@@ -95,6 +101,12 @@ export default function Header() {
               <div className="border-t border-gray-200 pb-3 pt-4">
                 <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
                   <div className=" lg:flex lg:items-center lg:justify-end xl:col-span-4">
+                    <Link
+                      to="/user/:id"
+                      className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      My Profile
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
