@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const products = [
   {
@@ -15,6 +16,48 @@ const products = [
 ];
 
 export default function User() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [userId, setUserId] = useState(
+    () => localStorage.getItem("userId") || ""
+  );
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("userId", userId);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/upload/audio",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Upload successful:", response.data);
+      alert("Upload successful!");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  };
+
   return (
     <>
       <div className=" py-16 px-4">
@@ -83,6 +126,112 @@ export default function User() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+        >
+          Upload a new track
+        </button>
+
+        {isModalOpen && (
+          <div className="fixed z-10 inset-0 overflow-y-auto upload-model">
+            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+              <div
+                className="fixed inset-0 transition-opacity"
+                aria-hidden="true"
+              >
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              </div>
+              <span
+                className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+              <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">
+                      Upload Audio
+                    </h3>
+                    <div className="mt-2">
+                      <form onSubmit={handleSubmit}>
+                        <div>
+                          <label
+                            htmlFor="file"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            File:
+                          </label>
+                          <input
+                            type="file"
+                            id="file"
+                            accept="audio/*"
+                            onChange={handleFileChange}
+                            required
+                            className="mt-1 block w-full"
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label
+                            htmlFor="title"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Title:
+                          </label>
+                          <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                            className="block w-full rounded-md border-0  py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                          />
+                        </div>
+                        <div className="mt-4">
+                          <label
+                            htmlFor="description"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Description:
+                          </label>
+                          <input
+                            type="text"
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                            className="block w-full rounded-md border-0  py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                          />
+                        </div>
+                        <div className="mt-5 sm:mt-6">
+                          <button
+                            type="submit"
+                            className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                          >
+                            Upload
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse">
+                  <button
+                    type="button"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
