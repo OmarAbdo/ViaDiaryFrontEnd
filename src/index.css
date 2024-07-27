@@ -23,3 +23,7 @@ a {
     color: #083619 !important;  
     padding: 6px;
 }
+
+.upload-model * {
+    color: rgb(17 24 39 / var(--tw-text-opacity)) !important;
+}
