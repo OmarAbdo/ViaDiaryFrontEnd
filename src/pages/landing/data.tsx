@@ -18,21 +18,21 @@ export const primaryFeatures = [
   {
     name: "Quick account setup",
     description:
-      "Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.",
+      "Get started in seconds. Create a free account and begin sharing your stories instantly. No complicated setups or technical jargon.",
     href: "#",
     icon: BoltIcon,
   },
   {
     name: "Collaborate",
     description:
-      "Vero eum voluptatem aliquid nostrum voluptatem. Vitae esse natus. Earum nihil deserunt eos quasi cupiditate. A inventore et molestiae natus.",
+      "Connect with your loved ones. Share your experiences and build lasting memories with your friends and family. Harmony makes it easy to collaborate on shared journals.",
     href: "#",
     icon: UsersIcon,
   },
   {
     name: "Time stamp your diary",
     description:
-      "Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.",
+      "Never lose track of time. Each entry is automatically time-stamped, allowing you to revisit past memories and track your personal growth.",
     href: "#",
     icon: CalendarDaysIcon,
   },

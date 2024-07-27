@@ -148,9 +148,9 @@ export default function Landing() {
                 You don't have old diaries? No problem.
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-300">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis.
+                Your digital sanctuary. Whether you're starting a new journal or
+                transferring old entries, Harmony provides all the tools you
+                need to capture your life.
               </p>
             </div>
           </div>
@@ -180,9 +180,8 @@ export default function Landing() {
               Trusted by thousands of users&nbsp;worldwide
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-              impedit perferendis suscipit eaque, iste dolor cupiditate
-              blanditiis ratione.
+              Join a trusted community. Thousands of users worldwide rely on
+              Harmony to keep their memories safe and secure.
             </p>
           </div>
           <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 text-white sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
@@ -250,8 +249,8 @@ export default function Landing() {
               Join our platform today.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-              Incididunt sint fugiat pariatur cupidatat consectetur sit cillum
-              anim id veniam aliqua proident excepteur commodo do ea.
+              Make journaling a habit. With Harmony, journaling becomes a daily
+              ritual. Discover the joy of self-expression.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
