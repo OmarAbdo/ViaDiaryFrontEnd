@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Layout from "./components/layout";
 import GuestLayout from "./components/guestLayout";
 import Landing from "./pages/landing/index";
@@ -16,6 +21,10 @@ const App = () => {
     <Router>
       <div className="App">
         <Routes>
+          <Route
+            path="/"
+            element={isAuthenticated ? <Navigate to="/home" /> : <Landing />}
+          />
           <Route
             path="/home"
             element={
@@ -42,21 +51,29 @@ const App = () => {
               />
             }
           />
-          <Route path="/" element={<Landing />} />
+
           <Route
             path="/login"
             element={
-              <GuestLayout>
-                <Login />
-              </GuestLayout>
+              isAuthenticated ? (
+                <Navigate to="/home" />
+              ) : (
+                <GuestLayout>
+                  <Login />
+                </GuestLayout>
+              )
             }
           />
           <Route
             path="/signup"
             element={
-              <GuestLayout>
-                <Registration />
-              </GuestLayout>
+              isAuthenticated ? (
+                <Navigate to="/home" />
+              ) : (
+                <GuestLayout>
+                  <Registration />
+                </GuestLayout>
+              )
             }
           />
         </Routes>

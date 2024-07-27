@@ -17,6 +17,8 @@ export default function Header() {
       logout();
       navigate("/login");
   };
+
+  const userId = localStorage.getItem("userId");
   
   return (
     <>
@@ -39,7 +41,7 @@ export default function Header() {
                     <Link to="/">
                       <img
                         className="block h-8 w-auto"
-                        src="./logo.png"
+                        src="/logo.png"
                         alt="Your Company"
                       />
                     </Link>
@@ -82,7 +84,7 @@ export default function Header() {
                 </div>
                 <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
                   <Link
-                    to="/user/:id"
+                    to={`/user/${userId}`}
                     className="ml-6 inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                   >
                     My Profile
@@ -102,7 +104,7 @@ export default function Header() {
                 <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
                   <div className=" lg:flex lg:items-center lg:justify-end xl:col-span-4">
                     <Link
-                      to="/user/:id"
+                      to={`/user/${userId}`}
                       className="ml-6 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       My Profile
